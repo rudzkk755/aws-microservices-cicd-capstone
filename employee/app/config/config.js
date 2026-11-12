@@ -1,17 +1,6 @@
-// define default config, but allow overrides from ENV vars
-let config = {
-  APP_DB_HOST: "supplierdb.chyc4kik0wei.us-east-1.rds.amazonaws.com",
-  APP_DB_USER: "nodeapp",
-  APP_DB_PASSWORD: "coffee",
-  APP_DB_NAME: "COFFEE"
-}
-
-Object.keys(config).forEach(key => {
-  if(process.env[key] === undefined){
-    console.log(`[NOTICE] Value for key '${key}' not found in ENV, using default value.  See app/config/config.js`)
-  } else {
-    config[key] = process.env[key]
-  }
-});
-
-module.exports = config;
+module.exports = {
+    APP_DB_HOST: process.env.APP_DB_HOST || "localhost",
+    APP_DB_USER: process.env.APP_DB_USER || "admin",
+    APP_DB_PASSWORD: process.env.APP_DB_PASSWORD || "lab-password",
+    APP_DB_NAME: process.env.APP_DB_NAME || "COFFEE"
+};
